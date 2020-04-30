@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<title>Welcome</title>
+		<style>
+			#title {
+				width: 100%;	
+			}
+			#body{
+				width: 100%;
+				height: 150px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1>Welcome back, {{ username }}</h1><br>
+		<button><a href="/logout/">Logout</a></button>
+		<hr>
+		<h2>Create a Post</h2>
+		<form method="post">
+			{% csrf_token %}
+			<input required type="text" id="title" name="title" placeholder="Post Title">
+			<br>
+			<textarea required id="body" name="body"></textarea>
+			<br>
+			<input type="submit" value="upload">
+		</form>
+		<hr>
+		<h2>My Posts</h2>
+		{% for post in posts %}
+			<h3>{{ post.title }}</h3>
+			<p>{{ post.body }}</p>
+			<p>Uploaded: {{ post.uploaded }}</p>
+		{% endfor %}
+	</body>
+</html>
+		
