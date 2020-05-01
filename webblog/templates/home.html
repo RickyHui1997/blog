@@ -4,8 +4,12 @@
 	</head>
 	<body>
 		<h1>Welcome to Blog Website</h1>
-		<button><a href="/login/">Log In</a></button>
-		<button><a href="/signup/">Sign Up</a></button> <br>
+		{% if user.is_authenticated %}
+			<a href="/user/">To {{ user.username }} Page</a>
+		{% else %}
+			<button><a href="/login/">Log In</a></button>
+			<button><a href="/signup/">Sign Up</a></button> <br>
+		{% endif %}
 		{% for post in posts %}
 			<h3>{{ post.title }}</h3>
 			<p>Author: {{ post.author }}</p>

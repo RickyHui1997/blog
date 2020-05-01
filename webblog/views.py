@@ -60,8 +60,12 @@ def user(request):
 
 
 def home(request):
+    if request.user.is_authenticated:
+        print(request.user.username)
+    else:
+        print("not")
     posts = Post.objects.all()
-    return render(request, 'home.html', {'posts': posts})
+    return render(request, 'home.html', {'posts': posts, 'user': request.user})
 
 
 
